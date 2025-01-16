@@ -1,0 +1,1 @@
+link to labels: https://github.com/Jasonlee1995/ImageNet-1K/blob/main/ImageNet_val_label.txt

@@ -1,0 +1,16 @@
+timm
+torch
+einops
+lightning
+torchvision
+torchmetrics
+pathlib2
+schedulefree
+
+# Logging and lightningCLI
+wandb
+omegaconf
+jsonargparse[signatures]
+
+# Custom CUDA Kernel deps
+pybind11
