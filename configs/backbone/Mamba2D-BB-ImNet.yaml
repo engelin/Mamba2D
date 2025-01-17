@@ -15,7 +15,7 @@ trainer:
       entity: Mamba2D
       project: Mamba2D
       # NOTE: Ensure a unique ID (w.r.t w&b and locally) is set before training
-      id: Mamba2D-clean-test-01
+      id: Mamba2D-01
       resume: allow
       log_model: true
       save_dir: runs/train/${trainer.logger[0].init_args.id}

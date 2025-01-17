@@ -99,7 +99,7 @@ data:
 ...
 ```
 >**NOTE:** Ensure that a unique ID is set in the init args of `WandbLogger` within
-the config to prevent logging to the wrong run!**
+the config to prevent logging to the wrong run!
 
 See below for examples on how to run and debug the training:
 
@@ -110,8 +110,11 @@ python main.py fit -c configs/backbone/Mamba2D-BB.yaml --trainer.fast_dev_run tr
 # Test a config for multiple epochs before running (e.g. 10)
 python main.py fit -c configs/backbone/Mamba2D-BB.yaml --trainer.fast_dev_run 10
 
-# Train model (e.g: condor, resume is auto-configured within main.py)
+# Train model (e.g. condor, resume is auto-configured within main.py)
 python main.py fit -c configs/backbone/Mamba2D-BB.yaml
+
+# Train model using multiple GPUs (e.g. 4), Note: Divide accumulate_grad_batches by number of devices in config
+python main.py fit -c configs/backbone/Mamba2D-BB.yaml --devices 4
 
 ```
 
