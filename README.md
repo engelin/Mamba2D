@@ -13,6 +13,9 @@
 
 </div>
 
+## Updates
+- `2025-04-17`: Released pretrained weights for M2D-T available [here](https://github.com/cocoalex00/Mamba2D/releases/tag/v1.0.0).
+
 ## Introduction 
 State-Space Models (SSMs) have gained attention as a powerful and efficient alternative to transformer architectures. However, existing SSM designs are often rooted in biases inherited from their origins in natural language processing, which limits their ability to effectively model the spatial dependencies inherent in visual data.
 
