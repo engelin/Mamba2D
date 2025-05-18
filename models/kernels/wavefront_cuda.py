@@ -1,16 +1,25 @@
+import os
+os.environ["TORCH_CUDA_ARCH_LIST"] = "7.5"
+
+import os
+import sys
 import torch
+import importlib.util
 
-from torch.utils import cpp_extension
-from definitions import ROOT_DIR
+# Load .so
+this_dir = os.path.dirname(__file__)
+so_path = os.path.join(this_dir, "wf_cuda/wavefront_cuda.cpython-311-x86_64-linux-gnu.so")
 
-cpp_extension.load(name="wavefront_cuda",
-                   sources=[ROOT_DIR / "models/kernels/wf_cuda/wf_cuda_bind.cpp",
-                            ROOT_DIR / "models/kernels/wf_cuda/wf_cuda.cu"],
-                   extra_cflags=["-O2", "-fvisibility=hidden"],
-                   extra_cuda_cflags=["-Xptxas", "-O3"],
-                   verbose=False)
+if not os.path.exists(so_path):
+    raise ImportError(f"[ERROR] Prebuilt extension not found at {so_path}")
 
-from wavefront_cuda import wf_fwd, wf_bwd
+spec = importlib.util.spec_from_file_location("wavefront_cuda", so_path)
+wavefront_cuda = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(wavefront_cuda)
+
+# Bind .so
+wf_fwd = wavefront_cuda.wf_fwd
+wf_bwd = wavefront_cuda.wf_bwd
 
 class wf_cuda_fn(torch.autograd.Function):
     @staticmethod

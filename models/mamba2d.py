@@ -286,7 +286,7 @@ class ResBlock(nn.Module):
 
         return x
 
-@torch.compile
+@torch.compiler.disable
 class Mamba2DBackbone(nn.Module):
     def __init__(self,
                  
